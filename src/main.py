@@ -11,7 +11,7 @@ lock = asyncio.Lock()
 @app.get("/increment")
 async def increment() -> dict[str, bool]:
     global counter
-    with lock:
+    async with lock:
         counter += 1
         if counter == threshold:
             counter = 0
